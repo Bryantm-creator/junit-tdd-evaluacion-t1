@@ -12,8 +12,8 @@ public class PedidoService {
         }
 
         // 2. VALIDAR CÓDIGO
-        if (!codigo.matches("P\\d{3}")) {
-            return "Ingrese un código de pedido válido";
+        if (!nombre.matches("[a-zA-Z]{3,}")) {
+            return "El nombre del cliente debe tener al menos tres caracteres alfabéticos";
         }
 
         return "";
