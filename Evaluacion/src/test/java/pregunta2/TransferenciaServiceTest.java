@@ -87,5 +87,6 @@ public class TransferenciaServiceTest {
             service.transferir("origen", "destino", 500);
         });
     }
+
 }
 
