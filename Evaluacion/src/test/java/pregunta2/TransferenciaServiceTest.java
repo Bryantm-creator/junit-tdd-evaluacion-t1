@@ -42,7 +42,15 @@ public class TransferenciaServiceTest {
         verify(transaccionRepository).registrar("origen", "destino", 500);
     }
 
+    @Test
+    void deberiaFallarSiCuentaDestinoNoExiste() {
 
+        when(cuentaRepository.existeCuenta("destino")).thenReturn(false);
+
+        assertThrows(RuntimeException.class, () -> {
+            service.transferir("origen", "destino", 500);
+        });
+    }
 
 }
 
