@@ -51,6 +51,15 @@ public class TransferenciaServiceTest {
             service.transferir("origen", "destino", 500);
         });
     }
+    @Test
+    void deberiaFallarSiNoHaySaldo() {
 
+        when(cuentaRepository.existeCuenta("destino")).thenReturn(true);
+        when(cuentaRepository.tieneSaldo("origen", 500)).thenReturn(false);
+
+        assertThrows(RuntimeException.class, () -> {
+            service.transferir("origen", "destino", 500);
+        });
+    }
 }
 
