@@ -25,6 +25,10 @@ public class PedidoService {
         if (mesa < 1 || mesa > 50) {
             return "Ingrese un número de mesa válido";
         }
+        // 5. MONTO
+        if (monto <= 0) {
+            return "Ingrese un monto válido";
+        }
 
         return "";
     }
