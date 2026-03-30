@@ -15,6 +15,14 @@ public class PedidoServiceTest {
 
         assertEquals("Debe ingresar todos los datos requeridos", resultado);
     }
+    @Test
+    void deberiaRetornarErrorSiCodigoEsInvalido() {
+        PedidoService service = new PedidoService();
+
+        String resultado = service.registrarPedido("123", "Juan", 10, 50.0, LocalDate.now());
+
+        assertEquals("Ingrese un código de pedido válido", resultado);
+    }
 
     @Test
     void deberiaRetornarErrorSiNombreEsInvalido() {
@@ -23,6 +31,15 @@ public class PedidoServiceTest {
         String resultado = service.registrarPedido("P123", "J1", 10, 50.0, LocalDate.now());
 
         assertEquals("El nombre del cliente debe tener al menos tres caracteres alfabéticos", resultado);
+    }
+
+    @Test
+    void deberiaRetornarErrorSiMesaEsInvalida() {
+        PedidoService service = new PedidoService();
+
+        String resultado = service.registrarPedido("P123", "Juan", 0, 50.0, LocalDate.now());
+
+        assertEquals("Ingrese un número de mesa válido", resultado);
     }
 
 }
