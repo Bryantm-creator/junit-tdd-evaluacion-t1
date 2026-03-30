@@ -41,5 +41,13 @@ public class PedidoServiceTest {
 
         assertEquals("Ingrese un número de mesa válido", resultado);
     }
+    @Test
+    void deberiaRetornarErrorSiMontoEsInvalido() {
+        PedidoService service = new PedidoService();
+
+        String resultado = service.registrarPedido("P123", "Juan", 10, -5.0, LocalDate.now());
+
+        assertEquals("Ingrese un monto válido", resultado);
+    }
 
 }
