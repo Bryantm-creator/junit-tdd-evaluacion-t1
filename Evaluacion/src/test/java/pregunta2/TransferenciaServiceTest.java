@@ -61,5 +61,20 @@ public class TransferenciaServiceTest {
             service.transferir("origen", "destino", 500);
         });
     }
+
+    @Test
+    void deberiaSolicitarOtpSiMontoEsAlto() {
+
+        when(cuentaRepository.existeCuenta("destino")).thenReturn(true);
+        when(cuentaRepository.tieneSaldo("origen", 2000)).thenReturn(true);
+        when(otpService.validarOtp()).thenReturn(true);
+        when(fraudeService.esSospechoso("origen", 2000)).thenReturn(false);
+
+        boolean resultado = service.transferir("origen", "destino", 2000);
+
+        assertTrue(resultado);
+
+        verify(otpService).validarOtp();
+    }
 }
 
