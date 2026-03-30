@@ -76,5 +76,16 @@ public class TransferenciaServiceTest {
 
         verify(otpService).validarOtp();
     }
+    @Test
+    void deberiaBloquearPorFraude() {
+
+        when(cuentaRepository.existeCuenta("destino")).thenReturn(true);
+        when(cuentaRepository.tieneSaldo("origen", 500)).thenReturn(true);
+        when(fraudeService.esSospechoso("origen", 500)).thenReturn(true);
+
+        assertThrows(RuntimeException.class, () -> {
+            service.transferir("origen", "destino", 500);
+        });
+    }
 }
 
