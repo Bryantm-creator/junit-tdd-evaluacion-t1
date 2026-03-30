@@ -47,7 +47,22 @@ public class PedidoServiceTest {
 
         String resultado = service.registrarPedido("P123", "Juan", 10, -5.0, LocalDate.now());
 
-        assertEquals("Ingrese un monto válido", resultado);
+        assertEquals("El monto total debe ser mayor a cero", resultado);
     }
+    @Test
+    void deberiaRetornarErrorSiFechaEsInvalida() {
+        PedidoService service = new PedidoService();
 
+        String resultado = service.registrarPedido("P123", "Juan", 10, 50.0, LocalDate.of(2020, 1, 1));
+
+        assertEquals("La fecha del pedido debe ser la fecha actual", resultado);
+    }
+    @Test
+    void deberiaRegistrarPedidoCorrectamente() {
+        PedidoService service = new PedidoService();
+
+        String resultado = service.registrarPedido("P123", "Juan", 10, 50.0, LocalDate.now());
+
+        assertEquals("El pedido ha sido registrado correctamente", resultado);
+    }
 }
