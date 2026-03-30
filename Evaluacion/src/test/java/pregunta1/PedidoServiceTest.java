@@ -17,12 +17,12 @@ public class PedidoServiceTest {
     }
 
     @Test
-    void deberiaRetornarErrorSiCodigoEsInvalido() {
+    void deberiaRetornarErrorSiNombreEsInvalido() {
         PedidoService service = new PedidoService();
 
-        String resultado = service.registrarPedido("A123", "Juan", 10, 50.0, LocalDate.now());
+        String resultado = service.registrarPedido("P123", "J1", 10, 50.0, LocalDate.now());
 
-        assertEquals("Ingrese un código de pedido válido", resultado);
+        assertEquals("El nombre del cliente debe tener al menos tres caracteres alfabéticos", resultado);
     }
 
 }
